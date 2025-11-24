@@ -1,0 +1,145 @@
+/* 1. 全体設定と背景 (body) */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0px 20px; 
+  
+  background-image: url('../images/grand_hall.png');
+  background-size: cover;
+  /* 【最終調整】背景画像を中央下部を基準に固定。これにより、ロゴが画面下部に表示されます。 */
+  background-position: center bottom; 
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 2. メインコンテナ (main) */
+main {
+  /* ロゴを見せるため、幅をコンパクトに保つ */
+  max-width: 580px;
+  
+  /* 【調整】画面中央に配置しつつ、上下に余白を持たせる */
+  margin: 20px auto; 
+  
+  padding: 25px 30px; 
+
+  background-color: rgba(59, 59, 59, 0.75);
+  border-radius: 15px;
+  border: 4px solid #d4af37;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+}
+
+/* 3. タイトル (h1) */
+h1 {
+  color: #d4af37;
+  /* HTMLから削除済みのため、非表示を適用 */
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 4px #000;
+  display: none; 
+}
+
+/* 4. リールセクションのレイアウト */
+#reels-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 25px 0;
+}
+
+/* 5. 個々のリールのスタイル (.reel) */
+.reel {
+  font-size: 85px; 
+  font-weight: bold;
+  background-color: #000;
+  border: 6px solid #8B0000; 
+  border-radius: 12px;
+  width: 100px;
+  height: 120px;
+  line-height: 120px;
+  margin: 0 15px;
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3), 0 0 10px #8B0000;
+}
+
+/* 6. 結果表示 (#result-display) */
+#result-display {
+  font-size: 26px;
+  font-weight: bold;
+  padding: 18px; /* 【調整】上下のパディングを増やして、文字の周りに余白を持たせる */
+  margin-bottom: 30px;
+  border-radius: 8px;
+  
+  /* 【追加】文字に影をつけて豪華さを出す */
+  text-shadow: 2px 2px 4px #000;
+  
+  /* 【追加】ベースとなる外枠の影 */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  
+  transition: all 0.3s ease; 
+}
+/* 7. 判定結果ごとのスタイル */
+
+/* 勝利時 (.win) の強調 */
+.win {
+  color: #fff; /* 文字色を白にして、背景の豪華さを引き立たせる */
+  background-color: #4a0000; /* 濃い赤の背景 */
+  border: 4px solid #ffd700; /* 【調整】金色の枠線を太くする */
+  
+  /* 【追加】内側と外側に豪華な影を追加 */
+  box-shadow: 
+    inset 0 0 15px rgba(255, 255, 255, 0.5), /* 内側に光る影 */
+    0 0 30px #ffd700; /* 外側に金色のグロー */
+}
+
+/* 引き分け時 (.draw) の調整 */
+.draw {
+  color: #ffff00; 
+  background-color: #333300; /* 背景を少し暗くする */
+  border: 2px solid #ffff00;
+  
+  /* 【追加】控えめな光の影 */
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); 
+}
+
+/* 敗北時 (.lose) の調整 */
+.lose {
+  color: #ff5555; 
+  background-color: #440000;
+  border: 2px solid #8B0000; /* 枠線を濃い赤に */
+  
+  /* 【追加】影を暗くして沈んだ雰囲気に */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* 8. ボタン (#spin-btn) */
+#spin-btn {
+  padding: 18px 35px;
+  font-size: 26px;
+  font-weight: bold;
+  background-color: #8B0000; 
+  color: #d4af37; 
+  border: 3px solid #d4af37; 
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 0 #4a0000; 
+}
+
+#spin-btn:hover {
+  background-color: #a30000;
+}
+
+#spin-btn:active {
+    transform: translateY(4px); 
+    box-shadow: none;
+}
+
+#spin-btn:disabled {
+  background-color: #555;
+  border-color: #777;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

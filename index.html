@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JACKPOT FEVER</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+JP"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <p>現在のギルダー： <span id="coins-display">100</span>枚</p>
+      </section>
+
+      <section id="reels-section">
+        <p id="reel-1" class="reel">?</p>
+        <p id="reel-2" class="reel">?</p>
+        <p id="reel-3" class="reel">?</p>
+      </section>
+
+      <section>
+        <p id="result-display">PUSH START</p>
+      </section>
+
+      <section id="user-buttons">
+        <button id="spin-btn">START</button>
+      </section>
+    </main>
+
+    <script>
+      /// 1. 変数・定数定義（ゲーム設定）
+      // 通貨を「コイン」から「ギルダー」に変更
+      let coins = 100; // HTML表示も「ギルダー」に変更
+      const BET_COST = 5;
+      const symbols = ["👑", "🛡️", "📜", "🍷", "⚔️"];
+      // 👑: 王冠、🛡️: 盾、📜: 巻物、🍷: ワイン、⚔️: 剣
+
+      // 2. HTML要素取得
+      const reel1 = document.getElementById("reel-1");
+      const reel2 = document.getElementById("reel-2");
+      const reel3 = document.getElementById("reel-3");
+      const resultDisplay = document.getElementById("result-display");
+      const spinBtn = document.getElementById("spin-btn");
+      const coinsDisplay = document.getElementById("coins-display");
+      coinsDisplay.textContent = coins;
+
+      // 3. ランダムな絵柄を選ぶ関数
+      // 修正: 関数名のtypo (getRandomSybol) を修正
+      function getRandomSymbol() {
+        const randomIndex = Math.floor(Math.random() * symbols.length);
+        return symbols[randomIndex];
+      }
+
+      // 4. スロットを回転させるメイン処理
+      function spinSlot() {
+        if (coins < BET_COST) {
+          resultDisplay.textContent = "コインが足りません！ゲームオーバー";
+          spinBtn.disabled = true;
+          return;
+        }
+
+        coins -= BET_COST;
+        coinsDisplay.textContent = coins;
+
+        // 3つのリールの絵柄をランダムに決定
+        const result1 = getRandomSymbol();
+        const result2 = getRandomSymbol();
+        const result3 = getRandomSymbol();
+
+        // 修正: 絵柄を表示する処理追加
+        reel1.textContent = result1;
+        reel2.textContent = result2;
+        reel3.textContent = result3;
+
+        // 勝敗判定ロジックを呼び出す
+        checkWin(result1, result2, result3);
+      }
+
+      // 5. 配当判定ロジック
+      function checkWin(r1, r2, r3) {
+        let payout = 0;
+        let resultText = ""; // 初期化を空にして、判定後に必ず設定するようにします
+        let resultClass = "lose";
+
+        // ３つ揃ったかを判定 (Win)
+        if (r1 === r2 && r2 === r3) {
+          resultText = "王権が、富をもたらす！"; // 勝利案B
+          resultClass = "win";
+
+          if (r1 === "👑") {
+            // 王冠 (Crown) が揃ったら最高配当
+            payout = 500;
+          } else if (r1 === "🛡️" || r1 === "📜") {
+            // 盾や巻物（権力/知識）
+            payout = 100;
+          } else {
+            // 剣やワイン（一般的/戦闘）
+            payout = 50;
+          }
+
+          // 2つ揃ったかどうかを判定 (Draw)
+        } else if (r1 === r2 || r2 === r3 || r1 === r3) {
+          resultText = "報償を得た。いざ、次へ！"; // 引き分け案A
+          resultClass = "draw";
+          payout = 10;
+
+          // 完全に外れた場合 (Lose)
+        } else {
+          // 【修正・追加】負けのメッセージを明示的に設定
+          resultText = "フォルトゥナは、微笑まず。"; // 敗北案B
+          resultClass = "lose";
+          payout = 0;
+        }
+
+        resultDisplay.className = "";
+        resultDisplay.classList.add(resultClass);
+
+        coins += payout;
+        coinsDisplay.textContent = coins;
+
+        // メッセージの最後に (payout枚ゲット) を追加
+        resultDisplay.textContent = `${resultText} (${payout}ギルダーゲット)`;
+      }
+
+      // 6. ボタンイベント設定
+      spinBtn.addEventListener("click", () => {
+        spinSlot();
+      });
+    </script>
+  </body>
+</html>
