@@ -12,25 +12,54 @@
   </head>
 
   <body>
-    <main>
-      <section>
-        <p>現在のギルダー： <span id="coins-display">100</span>枚</p>
-      </section>
+    <div id="game-container">
+        
+        <div id="prize-table">
+            <h2>📜 栄光の配当表 📜</h2>
+            <div class="table-row header">
+                <span class="symbol-col">絵柄</span>
+                <span class="payout-col">配当</span>
+            </div>
+            <div class="table-row">
+                <span class="symbol-col">👑👑👑</span>
+                <span class="payout-col">500</span>
+            </div>
+            <div class="table-row">
+                <span class="symbol-col">🛡️🛡️🛡️ / 📜📜📜</span>
+                <span class="payout-col">100</span>
+            </div>
+            <div class="table-row">
+                <span class="symbol-col">⚔️⚔️⚔️ / 🍷🍷🍷</span>
+                <span class="payout-col">50</span>
+            </div>
+            <div class="table-row sub-payout">
+                <span class="symbol-col">任意の2つ揃い</span>
+                <span class="payout-col">10</span>
+            </div>
+        </div>
+        
+        <main>
+            <section>
+                <p>現在のギルダー： <span id="coins-display">100</span>枚</p>
+            </section>
 
-      <section id="reels-section">
-        <p id="reel-1" class="reel">?</p>
-        <p id="reel-2" class="reel">?</p>
-        <p id="reel-3" class="reel">?</p>
-      </section>
+            <section id="reels-section">
+                <p id="reel-1" class="reel">?</p>
+                <p id="reel-2" class="reel">?</p>
+                <p id="reel-3" class="reel">?</p>
+            </section>
 
-      <section>
-        <p id="result-display">PUSH START</p>
-      </section>
+            <section>
+                <p id="result-display">PUSH START</p>
+            </section>
 
-      <section id="user-buttons">
-        <button id="spin-btn">START</button>
-      </section>
-    </main>
+            <section id="user-buttons">
+                <button id="spin-btn">START</button>
+            </section>
+        </main>
+        
+    </div>
+    </body>
 
     <script>
       /// 1. 変数・定数定義（ゲーム設定）

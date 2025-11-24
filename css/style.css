@@ -21,7 +21,7 @@ main {
   max-width: 580px;
   
   /* 【調整】画面中央に配置しつつ、上下に余白を持たせる */
-  margin: 20px auto; 
+  margin: 0 0 0 30px ; 
   
   padding: 25px 30px; 
 
@@ -142,4 +142,68 @@ h1 {
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* 9. 全体レイアウトのコンテナ（新設） */
+#game-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    /* 【調整】負のマージンを削除し、正の値で全体を中央に配置 */
+    margin-top: 50px; /* 適切な値に調整。画面中央に来るように調整 */
+}
+
+/* 10. プライズテーブルのスタイル */
+#prize-table {
+    max-width: 250px;
+    padding: 15px;
+    margin-right: 30px; /* mainとの間に余白を作る */
+    
+    background-color: rgba(90, 60, 20, 0.85); 
+    border: 3px solid #d4af37;  
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+   color: #fff8e1; 
+    text-align: left; 
+    font-size: 14px; 
+}
+
+#prize-table h2 {
+    color: #ffd700; /* 金色 */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* プライズテーブルの行のレイアウト */
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.symbol-col {
+    font-weight: bold;
+    font-size: 18px; 
+    /* リールと同じフィルターを適用 */
+    filter: grayscale(80%) sepia(30%) brightness(1.1); 
+}
+
+.payout-col {
+    color: #ffd700; 
+    font-weight: bold;
+}
+
+/* 2つ揃いの行を区別 */
+.sub-payout {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-style: italic;
+    font-size: 13px;
 }
